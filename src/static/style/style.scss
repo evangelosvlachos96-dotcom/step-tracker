@@ -1,0 +1,21 @@
+.footer {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  height: 70px;
+  background-color: #343a40;
+  width: 100%;
+  bottom: 0%;
+}
+input,
+select {
+  border-width: 1px;
+  border-radius: 10px;
+}
+input:focus,
+select:focus {
+  outline: none;
+}

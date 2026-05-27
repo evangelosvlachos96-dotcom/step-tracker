@@ -1,0 +1,30 @@
+.footer {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  color: white;
+  height: 70px;
+  background-color: #343a40;
+  width: 100%;
+  bottom: 0%;
+}
+
+input,
+select {
+  border-width: 1px;
+  border-radius: 10px;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+}
+/*# sourceMappingURL=style.css.map */

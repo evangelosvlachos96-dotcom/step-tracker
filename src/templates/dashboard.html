@@ -1,0 +1,154 @@
+{%  extends 'main.html' %}
+
+{% block content %}
+
+	<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>User :</h5>
+			<hr>
+			<p>Username: {{request.user.username}}</p>
+			{% if request.user.email %}
+			<p>Email: {{request.user.email}}</p>
+			{% endif %}
+			{% if request.user.phone %}
+			<p>Phone: {{request.user.phone}}</p>
+			{% endif %}
+			
+			<a class="btn btn-outline-info  btn-sm btn-block" href="">Useless button</a>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'add_steps' request.user.id %}">Submit a day</a>
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body text-center">
+			<h5>Total Steps</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px"> {{ total_steps }} </h1>
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body text-center">
+			<h5>Days recorded</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px"> {{ total_days }}</h1>
+		</div>
+	</div>
+</div>
+
+
+<br>
+<div class="row" style="padding-bottom: 60px;">
+	<div class="col">
+		<div class="card card-body">
+			
+			<form method="get" style="text-align: center;">
+				<select onChange="myNewFunction(this.selectedIndex);" style="position: absolute; right:2%; ">
+					<option value="" selected disabled hidden>Chart type</option>
+					<option value="B">Bar</option>
+					<option value="L">Line</option>
+					<option value="Bu">Bubble</option>
+				</select>
+				{% for field in myFilter.form %}
+				<a style="margin:5px;">{{field}}</a>
+				{% endfor %}
+				<button class="btn btn-primary" type="submit" style="border-radius: 10px;">Search</button>
+				<canvas id="myChart" width="400" height="100"></canvas>
+
+		  </form>
+
+		</div>
+	</div>
+	
+</div>
+<br>
+
+<script>
+	
+		var type = 'bar';
+
+
+
+		function myNewFunction(s){
+				switch(s) {
+					case 1:
+						type='bar';
+						break;
+					case 2:
+						type='line';
+						break;
+					case 3:
+						type='bubble';
+						break;
+					
+					default:
+						type='bar';
+					}
+					
+					myChart.config.type = type;
+					myChart.update();
+					
+	    }
+		
+    
+			var ctx = document.getElementById('myChart').getContext('2d');
+			var myChart = new Chart(ctx, {
+        type: type,
+        data: {
+            labels: [{% for i in days %}"{{ i.day }}",{% endfor %}],
+            datasets: [{
+                label: '# of Steps',
+                data: [{% for i in days %}{{ i.steps_counter }},{% endfor %}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+					'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+					'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+
+	
+		
+		
+</script>
+
+{% endblock %}
