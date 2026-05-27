@@ -156,10 +156,6 @@ Django upgraded from 3.1 (long since end-of-life) to 4.2 LTS. The functionality
 is the same as the original. I'm sharing it as a snapshot of what I was building
 early in my career, not as a polished product.
 
-## License
-
-Released under the MIT License — see [LICENSE](LICENSE).
-
 ## Author
 
 Vlachos Evangelos
