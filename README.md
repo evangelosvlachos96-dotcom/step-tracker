@@ -5,6 +5,8 @@ time. Built in 2021 while learning Django; refreshed in 2026 for the portfolio.
 
 ## Demo
 
+[Watch the demo on YouTube](https://www.youtube.com/watch?v=TdXGXl1hA6I)
+
 **Login & registration**
 
 ![Login screen with an "incorrect credentials" message](images/login01.png)
